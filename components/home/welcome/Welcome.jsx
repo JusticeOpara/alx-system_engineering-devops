@@ -10,13 +10,13 @@ import {
 import { useRouter } from "expo-router";
 
 import styles from "./welcome.style";
-import { icons, SIZES } from "../../../constants";
+import { icons, SIZES, } from "../../../constants";
 
 
 const jobTypes = ['Full-time', 'Part-time', 'Contractor']
 
 
-const Welcome = () => {
+const Welcome = ({searchTerm,setSearchTerm,handleClick}) => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState('Full-time')
 
@@ -29,16 +29,24 @@ const Welcome = () => {
 
       <View styles={styles.searchContainer}>
         <View style={styles.searchWrapper}>
-          <TextInput style={styles.searchInput}
-            value=""
-            onChange={() => { }}
+          <TextInput 
+            style={styles.searchInput}
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder="What are you Looking for ?" />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={() => { }}>
-          <Image src={icons.search} resizeMode="contain" style={styles.searchBtnImage} />
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
+
+          <Image 
+          src={icons.search} 
+          resizeMode="contain" 
+          style={styles.searchBtnImage} 
+          /> 
+
         </TouchableOpacity>
       </View>
+      
       <View style={styles.tabsContanier}>
         <FlatList
           data={jobTypes}
@@ -52,7 +60,7 @@ const Welcome = () => {
             </TouchableOpacity>
           )} 
           keyExtractor={item => item}
-          contentContainerStyle={{column: SIZES.small}}
+          contentContainerStyle={{columnGap: SIZES.small}}
           horizontal/>
       </View>
     </View>
