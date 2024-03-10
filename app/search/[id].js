@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, Image, TouchableOpacity, View } from 'react-native'
-import { Stack, useRouter, useSearchParams } from 'expo-router'
+import { Stack, useRouter, useLocalSearchParams } from 'expo-router'
 import { Text, SafeAreaView } from 'react-native'
 import axios from 'axios'
 
@@ -9,7 +9,7 @@ import { COLORS, icons, SIZES } from '../../constants'
 import styles from '../../styles/search'
 
 const JobSearch = () => {
-    const params = useSearchParams();
+    const params = useLocalSearchParams();
     const router = useRouter()
 
     const [searchResult, setSearchResult] = useState([]);
@@ -26,7 +26,7 @@ const JobSearch = () => {
                 method: "GET",
                 url: `https://jsearch.p.rapidapi.com/search`,
                 headers: {
-                    "X-RapidAPI-Key": 'c71fc80433msh575ce3744223e4fp181cdbjsn7c4cc5754db3',
+                    "X-RapidAPI-Key": '2c96bfd089msh9ac2b9816c64dfap1989f9jsn114816bf7da1',
                     "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
                 },
                 params: {
@@ -112,7 +112,6 @@ const JobSearch = () => {
                                 style={styles.paginationImage}
                                 resizeMode="contain"
                             />
-                            
                         </TouchableOpacity>
                         <View style={styles.paginationTextBox}>
                             <Text style={styles.paginationText}>{page}</Text>
